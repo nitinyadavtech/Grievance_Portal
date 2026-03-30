@@ -14,5 +14,10 @@ mongoose.connect("mongodb://127.0.0.1:27017/grievance")
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/complaints", require("./routes/complaintRoutes"));
 app.use("/uploads", express.static("uploads"));
+app.use(express.static(path.join(process.cwd(), "client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(process.cwd(), "client/build/index.html"));
+});
 
 app.listen(5000, () => console.log("Server running"));
