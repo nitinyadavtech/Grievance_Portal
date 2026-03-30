@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌍 EARTHY THEME */
+body {
+  @apply bg-[#f4f1ec] text-gray-800;
+  font-family: 'Inter', sans-serif;
+}
+
+/* CARD STYLE */
+.card {
+  @apply bg-white rounded-2xl shadow-md p-6;
+}
+
+/* BUTTON */
+.btn {
+  @apply px-4 py-2 rounded-lg font-medium transition;
+}
+
+.btn-primary {
+  @apply bg-green-700 text-white hover:bg-green-800;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700;
+}
+
+.btn-success {
+  @apply bg-emerald-600 text-white hover:bg-emerald-700;
+}
+
+/* INPUT */
+.input {
+  @apply w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600;
+}
+
+/* IMAGE FIX */
+.img {
+  @apply w-full h-48 object-cover rounded-xl border;
+}
