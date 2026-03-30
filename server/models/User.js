@@ -4,7 +4,6 @@ const UserSchema = new mongoose.Schema({
   email: String,
   password: String,
 
-  // ✅ ADD THIS
   role: {
     type: String,
     default: "citizen"

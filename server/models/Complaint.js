@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const ComplaintSchema = new mongoose.Schema({
   title: String,
   description: String,
-  location: String, // ✅ ADDED
+  location: String,
 
   // ✅ ADD THESE
   category: String,

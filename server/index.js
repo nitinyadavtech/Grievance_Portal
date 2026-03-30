@@ -1,23 +1,32 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, ".env") });
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 
-mongoose.connect("mongodb://127.0.0.1:27017/grievance")
-  .then(() => console.log("Mongo Connected"));
-
+// Routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/complaints", require("./routes/complaintRoutes"));
-app.use("/uploads", express.static("uploads"));
-app.use(express.static(path.join(process.cwd(), "client/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(process.cwd(), "client/build/index.html"));
-});
+app.use(cors());
 
-app.listen(5000, () => console.log("Server running"));
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("Mongo Connected");
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log("Mongo Error:", err);
+    process.exit(1);
+  });
