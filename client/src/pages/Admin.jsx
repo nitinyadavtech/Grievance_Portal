@@ -6,7 +6,9 @@ export default function Admin() {
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
-    const res = await axios.get("http://localhost:5000/api/complaints");
+    const res = await axios.get(
+      "http://https://grievance-portal-backend-atde.onrender.com/api/complaints",
+    );
     setData(res.data);
   };
 
@@ -16,9 +18,13 @@ export default function Admin() {
 
   const update = async (id) => {
     try {
-      await axios.put("http://localhost:5000/api/complaints/" + id, {
-        status: "Resolved",
-      });
+      await axios.put(
+        "http://https://grievance-portal-backend-atde.onrender.com/api/complaints/" +
+          id,
+        {
+          status: "Resolved",
+        },
+      );
 
       alert("✅ Marked as Resolved");
 

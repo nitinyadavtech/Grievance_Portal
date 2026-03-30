@@ -17,7 +17,9 @@ export default function Complaint() {
   const [file, setFile] = useState(null);
 
   const fetchData = async () => {
-    const res = await axios.get("http://localhost:5000/api/complaints");
+    const res = await axios.get(
+      "https://grievance-portal-backend-atde.onrender.com",
+    );
     setData(res.data);
   };
 
@@ -43,7 +45,7 @@ export default function Complaint() {
     }
 
     const res = await axios.post(
-      "http://localhost:5000/api/complaints",
+      "https://grievance-portal-backend-atde.onrender.com",
       formData,
     );
 
@@ -60,7 +62,11 @@ export default function Complaint() {
     formData.append("proof", file);
 
     try {
-      await axios.put("http://localhost:5000/api/complaints/" + id, formData);
+      await axios.put(
+        "http://https://grievance-portal-backend-atde.onrender.com/api/complaints/" +
+          id,
+        formData,
+      );
       alert("Resolved with proof");
       setFile(null);
       fetchData();

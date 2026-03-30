@@ -9,7 +9,10 @@ export default function Track() {
 
   const search = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/complaints/" + id);
+      const res = await axios.get(
+        "http://https://grievance-portal-backend-atde.onrender.com/api/complaints/" +
+          id,
+      );
       setData(res.data);
     } catch {
       alert("Not found");
@@ -59,7 +62,7 @@ export default function Track() {
                 <div className="mt-4">
                   <p className="font-semibold text-sm">Uploaded Image:</p>
                   <img
-                    src={`http://localhost:5000/uploads/${data.image}`}
+                    src={`http://https://grievance-portal-backend-atde.onrender.com/uploads/${data.image}`}
                     className="mt-2 rounded-lg border border-green-900"
                   />
                 </div>
@@ -85,7 +88,7 @@ export default function Track() {
                     Resolution Proof:
                   </p>
                   <img
-                    src={`http://localhost:5000/uploads/${data.proof}`}
+                    src={`http://https://grievance-portal-backend-atde.onrender.com/uploads/${data.proof}`}
                     className="mt-2 rounded-lg border border-green-900"
                   />
                 </div>

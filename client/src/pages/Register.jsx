@@ -15,7 +15,10 @@ export default function Register() {
 
     try {
       setLoading(true);
-      await axios.post("http://localhost:5000/api/auth/register", form);
+      await axios.post(
+        "http://https://grievance-portal-backend-atde.onrender.com/api/auth/register",
+        form,
+      );
       alert("Account created successfully!");
       nav("/login");
     } catch {
