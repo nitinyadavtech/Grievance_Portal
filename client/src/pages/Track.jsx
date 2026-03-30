@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import Navbar from "./Navbar";
 import img from "../assets/img2.jpeg";
+import { apiUrl, uploadUrl } from "../utils/api";
 
 export default function Track() {
   const [id, setId] = useState("");
@@ -10,8 +11,7 @@ export default function Track() {
   const search = async () => {
     try {
       const res = await axios.get(
-        "http://https://grievance-portal-backend-atde.onrender.com/api/complaints/" +
-          id,
+        apiUrl(`/api/complaints/${id}`),
       );
       setData(res.data);
     } catch {
@@ -62,7 +62,7 @@ export default function Track() {
                 <div className="mt-4">
                   <p className="font-semibold text-sm">Uploaded Image:</p>
                   <img
-                    src={`http://https://grievance-portal-backend-atde.onrender.com/uploads/${data.image}`}
+                    src={uploadUrl(data.image)}
                     className="mt-2 rounded-lg border border-green-900"
                   />
                 </div>
@@ -88,7 +88,7 @@ export default function Track() {
                     Resolution Proof:
                   </p>
                   <img
-                    src={`http://https://grievance-portal-backend-atde.onrender.com/uploads/${data.proof}`}
+                    src={uploadUrl(data.proof)}
                     className="mt-2 rounded-lg border border-green-900"
                   />
                 </div>

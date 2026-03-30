@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import img from "../assets/img1.jpeg";
+import { apiUrl } from "../utils/api";
 
 export default function Register() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -16,7 +17,7 @@ export default function Register() {
     try {
       setLoading(true);
       await axios.post(
-        "http://https://grievance-portal-backend-atde.onrender.com/api/auth/register",
+        apiUrl("/api/auth/register"),
         form,
       );
       alert("Account created successfully!");

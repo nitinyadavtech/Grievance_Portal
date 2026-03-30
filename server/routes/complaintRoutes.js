@@ -2,10 +2,16 @@ const express = require("express");
 const router = express.Router();
 const ctrl = require("../controllers/complaintController");
 const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
 
-// 📦 STORAGE CONFIG
+const uploadDir = path.join(__dirname, "..", "uploads");
+fs.mkdirSync(uploadDir, { recursive: true });
+
 const storage = multer.diskStorage({
-  destination: "uploads/",
+  destination: (req, file, cb) => {
+    cb(null, uploadDir);
+  },
   filename: (req, file, cb) => {
     cb(null, Date.now() + "-" + file.originalname);
   }

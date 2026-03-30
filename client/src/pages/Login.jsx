@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import img1 from "../assets/img1.jpeg";
+import { apiUrl } from "../utils/api";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -17,7 +18,7 @@ export default function Login() {
       setLoading(true);
 
       const res = await axios.post(
-        "http://https://grievance-portal-backend-atde.onrender.com/api/auth/login",
+        apiUrl("/api/auth/login"),
         form,
       );
 

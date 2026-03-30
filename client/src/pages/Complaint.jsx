@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "./Navbar";
 import img from "../assets/img2.jpeg";
+import { apiUrl, uploadUrl } from "../utils/api";
 
 export default function Complaint() {
   const role = localStorage.getItem("role");
@@ -17,9 +18,7 @@ export default function Complaint() {
   const [file, setFile] = useState(null);
 
   const fetchData = async () => {
-    const res = await axios.get(
-      "https://grievance-portal-backend-atde.onrender.com",
-    );
+    const res = await axios.get(apiUrl("/api/complaints"));
     setData(res.data);
   };
 
@@ -45,7 +44,7 @@ export default function Complaint() {
     }
 
     const res = await axios.post(
-      "https://grievance-portal-backend-atde.onrender.com",
+      apiUrl("/api/complaints"),
       formData,
     );
 
@@ -63,8 +62,7 @@ export default function Complaint() {
 
     try {
       await axios.put(
-        "http://https://grievance-portal-backend-atde.onrender.com/api/complaints/" +
-          id,
+        apiUrl(`/api/complaints/${id}`),
         formData,
       );
       alert("Resolved with proof");
@@ -121,14 +119,14 @@ export default function Complaint() {
                 <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                   {c.image && (
                     <img
-                      src={`http://localhost:5000/uploads/${c.image}`}
+                      src={uploadUrl(c.image)}
                       className="w-full h-96 object-cover rounded-lg border"
                     />
                   )}
 
                   {c.status === "Resolved" && c.proof && (
                     <img
-                      src={`http://localhost:5000/uploads/${c.proof}`}
+                      src={uploadUrl(c.proof)}
                       className="w-full h-96 object-cover rounded-lg border-2 border-green-500"
                     />
                   )}

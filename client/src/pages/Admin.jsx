@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./Navbar";
+import { apiUrl, uploadUrl } from "../utils/api";
 
 export default function Admin() {
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
-    const res = await axios.get(
-      "http://https://grievance-portal-backend-atde.onrender.com/api/complaints",
-    );
+    const res = await axios.get(apiUrl("/api/complaints"));
     setData(res.data);
   };
 
@@ -19,8 +18,7 @@ export default function Admin() {
   const update = async (id) => {
     try {
       await axios.put(
-        "http://https://grievance-portal-backend-atde.onrender.com/api/complaints/" +
-          id,
+        apiUrl(`/api/complaints/${id}`),
         {
           status: "Resolved",
         },
@@ -53,7 +51,7 @@ export default function Admin() {
 
               {c.image && (
                 <img
-                  src={`http://localhost:5000/uploads/${c.image}`}
+                  src={uploadUrl(c.image)}
                   className="mt-3 rounded-lg w-full h-40 object-cover"
                 />
               )}
